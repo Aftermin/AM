@@ -1,0 +1,307 @@
+@startuml
+class item.consumption.Pill {
+- int RECOVER_PT
++ <<Create>> Pill()
++ String toString()
++ int getRECOVER_PT()
++ void setRECOVER_PT(int)
++ int getRecoverPoint()
+}
+class item.consumption.StrengthPotion {
+- int level
+- int MAX_LEVEL
+- int[] ATT_BUFF
+- int BUFF_TURN
++ <<Create>> StrengthPotion()
++ int getMAX_LEVEL()
++ void setMAX_LEVEL(int)
++ int[] getATT_BUFF()
++ void setATT_BUFF(int[])
++ int getBUFF_TURN()
++ void setBUFF_TURN(int)
++ int getAttBuff()
++ int getBuffTurn()
++ int getLevel()
++ void setLevel(int)
++ int getMaxLevel()
++ String toString()
+}
+abstract class item.base.BaseConsumption {
++ <<Create>> BaseConsumption(String)
+}
+abstract class item.base.BaseItem {
+- String name
++ <<Create>> BaseItem(String)
++ String getName()
++ void setName(String)
+}
+class item.weapon.Bow {
+- int level
+- int MAX_LEVEL
+- int[] att
++ <<Create>> Bow()
++ int getMAX_LEVEL()
++ void setMAX_LEVEL(int)
++ void setAtt(int[])
++ int getAtt()
++ int getLevel()
++ void setLevel(int)
++ int getMaxLevel()
++ String toString()
+}
+class player.NegativePosException {
++ <<Create>> NegativePosException()
+}
+class table.Enchanter {
++ <<Create>> Enchanter()
++ String interact(BaseItem)
+}
+abstract class item.base.BaseWeapon {
+- int range
++ <<Create>> BaseWeapon(String,int,int)
++ {abstract}int getAtt()
++ int getRange()
++ void setRange(int)
++ String toString()
+}
+class table.Randomizer {
++ {static} Randomizer instance
+- String name
+- ItemRandomWeight[] ITEM_RANDOM_WEIGHT
++ <<Create>> Randomizer()
++ String getName()
++ void setName(String)
++ BaseItem interact()
+- BaseItem randomItem()
+- int sumTotalWeight()
+}
+class item.consumption.UltimatePotion {
+- int ATT_BUFF
+- int BUFF_TURN
+- int RECOVER_PT
++ <<Create>> UltimatePotion()
++ int getAttBuff()
++ int getBuffTurn()
++ int getRecoverPoint()
++ String toString()
+}
+class table.Oven {
++ <<Create>> Oven()
++ String interact(BaseItem)
+}
+class item.consumption.GoldenApple {
+- CookState cookState
+- HashMap<CookState,Integer> RECOVER_PT
++ <<Create>> GoldenApple()
++ CookState getCookState()
++ void setCookState(CookState)
++ int getRecoverPoint()
++ String toString()
+}
+class item.armor.Boots {
+- int def
++ <<Create>> Boots()
++ void setDef(int)
++ int getDef()
+}
+abstract class item.base.BaseArmor {
++ <<Create>> BaseArmor(String,int)
++ {abstract}int getDef()
++ String toString()
+}
+class player.Inventory {
+- ArrayList<BaseItem> ITEMS
+- int MAX_SIZE
+- {static} Scanner invScanner
++ <<Create>> Inventory()
++ ArrayList<BaseItem> getItems()
++ void addItem(BaseItem)
++ void removeItem(BaseItem)
++ void printAllItem()
+}
+enum item.usage.CookState {
++  RAW
++  COOKED
++  BURNT
+}
+class item.weapon.Sword {
+- int level
+- int MAX_LEVEL
+- int[] att
++ <<Create>> Sword()
++ int getMAX_LEVEL()
++ void setMAX_LEVEL(int)
++ void setAtt(int[])
++ int getAtt()
++ int getLevel()
++ void setLevel(int)
++ int getMaxLevel()
++ String toString()
+}
+class item.armor.Helmet {
+- int def
++ <<Create>> Helmet()
++ void setDef(int)
++ int getDef()
+}
+interface item.usage.Healable {
+~ int getRecoverPoint()
+}
+interface item.usage.Upgradable {
+~ int getLevel()
+~ void setLevel(int)
+~ int getMaxLevel()
+}
+abstract class item.base.BaseEquipment {
+- int durability
++ <<Create>> BaseEquipment(String,int)
++ int getDurability()
++ void setDurability(int)
+}
+class item.consumption.HealingPotion {
+- int level
+- int MAX_LEVEL
+- int[] RECOVER_PT
++ <<Create>> HealingPotion()
++ int getMAX_LEVEL()
++ void setMAX_LEVEL(int)
++ int[] getRECOVER_PT()
++ void setRECOVER_PT(int[])
++ int getRecoverPoint()
++ int getLevel()
++ void setLevel(int)
++ int getMaxLevel()
++ String toString()
+}
+interface item.usage.Cookable {
+~ CookState getCookState()
+~ void setCookState(CookState)
+}
+class table.ItemRandomWeight {
+- BaseItem item
+- int weight
++ <<Create>> ItemRandomWeight(BaseItem,int)
++ BaseItem getItem()
++ void setItem(BaseItem)
++ int getWeight()
++ void setWeight(int)
+}
+class item.weapon.Stick {
+- int att
++ <<Create>> Stick()
++ void setAtt(int)
++ int getAtt()
+}
+class item.consumption.Pork {
+- CookState cookState
+- HashMap<CookState,Integer> RECOVER_PT
++ <<Create>> Pork()
+- void addHashMap()
++ int getRecoverPoint()
++ String toString()
++ CookState getCookState()
++ void setCookState(CookState)
+}
+interface item.usage.AttBuffable {
+~ int getAttBuff()
+~ int getBuffTurn()
+}
+class player.Player {
+- String name
+- int hp
+- int MAX_HP
+- int pos
+- Inventory INVENTORY
+- Helmet helmetSlot
+- Suit suitSlot
+- Boots bootsSlot
+- int attBuffing
+- int buffRemainingTurn
++ <<Create>> Player(String)
++ String useWeapon(BaseWeapon,Player)
++ void beingAttack(int)
++ void decreaseArmorDur()
++ void decreaseWeaponDur(BaseWeapon)
++ String useNonWeaponItem(BaseItem)
+- String useHeal(Healable)
+- String useBuff(AttBuffable)
+- String wear(BaseArmor)
++ int calculateAtt(BaseWeapon)
++ int calculateDef()
++ String getName()
++ void setName(String)
++ int getHp()
++ void setHp(int)
++ int getMaxHp()
++ int getPos()
++ void setPos(int)
++ Helmet getHelmetSlot()
++ void setHelmetSlot(Helmet)
++ Suit getSuitSlot()
++ void setSuitSlot(Suit)
++ Boots getBootsSlot()
++ void setBootsSlot(Boots)
++ int getAttBuffing()
++ void setAttBuffing(int)
++ int getBuffRemainingTurn()
++ void setBuffRemainingTurn(int)
++ Inventory getInventory()
++ void printEquipment()
+}
+abstract class table.BaseTable {
+- String name
++ <<Create>> BaseTable(String)
++ String getName()
++ void setName(String)
++ {abstract}String interact(BaseItem)
+}
+class item.armor.Suit {
+- int level
+- int MAX_LEVEL
+- int[] def
++ <<Create>> Suit()
++ int getMAX_LEVEL()
++ void setMAX_LEVEL(int)
++ void setDef(int[])
++ int getDef()
++ String toString()
++ int getLevel()
++ void setLevel(int)
++ int getMaxLevel()
+}
+
+
+item.usage.Healable <|.. item.consumption.Pill
+item.base.BaseConsumption <|-- item.consumption.Pill
+item.usage.AttBuffable <|.. item.consumption.StrengthPotion
+item.usage.Upgradable <|.. item.consumption.StrengthPotion
+item.base.BaseConsumption <|-- item.consumption.StrengthPotion
+item.base.BaseItem <|-- item.base.BaseConsumption
+item.usage.Upgradable <|.. item.weapon.Bow
+item.base.BaseWeapon <|-- item.weapon.Bow
+player.Exception <|-- player.NegativePosException
+table.BaseTable <|-- table.Enchanter
+item.base.BaseEquipment <|-- item.base.BaseWeapon
+item.usage.AttBuffable <|.. item.consumption.UltimatePotion
+item.usage.Healable <|.. item.consumption.UltimatePotion
+item.base.BaseConsumption <|-- item.consumption.UltimatePotion
+table.BaseTable <|-- table.Oven
+item.usage.Cookable <|.. item.consumption.GoldenApple
+item.usage.Healable <|.. item.consumption.GoldenApple
+item.base.BaseConsumption <|-- item.consumption.GoldenApple
+item.base.BaseArmor <|-- item.armor.Boots
+item.base.BaseEquipment <|-- item.base.BaseArmor
+item.usage.Upgradable <|.. item.weapon.Sword
+item.base.BaseWeapon <|-- item.weapon.Sword
+item.base.BaseArmor <|-- item.armor.Helmet
+item.base.BaseItem <|-- item.base.BaseEquipment
+item.usage.Healable <|.. item.consumption.HealingPotion
+item.usage.Upgradable <|.. item.consumption.HealingPotion
+item.base.BaseConsumption <|-- item.consumption.HealingPotion
+item.base.BaseWeapon <|-- item.weapon.Stick
+item.usage.Cookable <|.. item.consumption.Pork
+item.usage.Healable <|.. item.consumption.Pork
+item.base.BaseConsumption <|-- item.consumption.Pork
+item.usage.Upgradable <|.. item.armor.Suit
+item.base.BaseArmor <|-- item.armor.Suit
+@enduml

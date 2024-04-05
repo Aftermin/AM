@@ -1,0 +1,34 @@
+@startuml
+class Student.CEDTStudent {
+- String internCompany
++ <<Create>> CEDTStudent()
++ String getInternCompany()
++ void setInternCompany(String)
++ void printName()
+}
+class Student.MySchool {
++ {static} void main(String[])
+}
+class Student.UndergraduateStudent {
++ <<Create>> UndergraduateStudent(String)
++ void computeCourseGrade()
++ void printName()
++ String toString()
+}
+class Student.GraduateStudent {
+~ String advisorName
++ <<Create>> GraduateStudent(String)
++ <<Create>> GraduateStudent(String,String)
++ String getAdvisorName()
++ void setAdvisorName(String)
++ void computeCourseGrade()
++ void printName()
++ {static} void printA()
++ String toString()
+}
+
+
+Student.Student <|-- Student.CEDTStudent
+Student.Student <|-- Student.UndergraduateStudent
+Student.Student <|-- Student.GraduateStudent
+@enduml
