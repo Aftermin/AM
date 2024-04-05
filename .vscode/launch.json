@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/Amin/Desktop/BE",
-      "program": "/Users/Amin/Desktop/BE/build/Debug/outDebug"
+      "cwd": "/Users/Amin/Desktop/AM",
+      "program": "/Users/Amin/Desktop/AM/build/Debug/outDebug"
     }
   ]
 }

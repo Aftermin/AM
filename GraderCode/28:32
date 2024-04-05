@@ -1,0 +1,6 @@
+cd "/Users/Amin/Desktop/CODE/GraderCode/" && g++ -std=c++17 08_Map_23.cpp -o 08_Map_23 && "/Users/Amin/Desktop/CODE/GraderCode/"08_Map_23
+AAA 000 A 1:19
+BBB 000 B 2:31
+CCC 000 C 3:12
+DDD 000 D 2:21
+EEE 000 E 1:15
